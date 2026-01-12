@@ -1,0 +1,15 @@
+livekit-agents~=1.0.0
+livekit-plugins-openai
+livekit-plugins-deepgram
+livekit-plugins-elevenlabs
+livekit-plugins-silero
+livekit-plugins-bey
+python-dotenv
+firebase-admin
+google-cloud-firestore
+google-cloud-monitoring
+google-cloud-logging
+aiohttp
+psutil
+requests
+protobuf

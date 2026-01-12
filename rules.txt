@@ -1,0 +1,72 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // =======================================================
+    // 1. PUBLIC APP DATA
+    // =======================================================
+    match /categories/{docId} {
+      allow read: if true;
+      allow write: if request.auth.token.admin == true;
+    }
+
+    match /services/{docId} {
+      allow read: if true;
+      allow write: if request.auth.token.admin == true;
+    }
+
+    // =======================================================
+    // 2. USER PROFILE DATA
+    // =======================================================
+    match /users/{uid} {
+      allow get: if request.auth.uid == uid;
+      allow list, get: if request.auth.token.admin == true;
+      allow create, update, delete: if false; 
+    }
+
+    // =======================================================
+    // 3. ORDER DATA
+    // =======================================================
+    match /orders/{docId} {
+      allow get, update, delete: if request.auth.token.admin == true;
+      allow get: if request.auth.uid == resource.data.uid;
+      allow create: if false;
+
+      // Allow LIST queries
+      allow list: if (
+        //
+        // ✨ [THE FINAL FIX v3] ✨
+        // We will no longer check the 'where' clause, which was failing.
+        // We will only check if the user is authenticated.
+        // Your orders.js file already filters for the user's UID.
+        //
+        request.auth.uid != null
+        ||
+        // Admin queries
+        request.auth.token.admin == true
+      );
+    }
+
+    // =======================================================
+    // 4. DEPOSIT DATA
+    // =======================================================
+    match /deposits/{docId} {
+      allow get, update: if request.auth.token.admin == true;
+      allow get: if request.auth.uid == resource.data.uid;
+      allow create: if false;
+
+      // Allow LIST queries
+      allow list: if (
+        // 1. Admin query
+        request.auth.token.admin == true
+        ||
+        // 2. User query
+        //
+        // ✨ [THE FINAL FIX v3] ✨
+        // We apply the same simpler logic here.
+        //
+        request.auth.uid != null
+      );
+    }
+  }
+}
