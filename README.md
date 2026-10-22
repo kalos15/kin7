@@ -1,4 +1,5 @@
 # Kin7 - AI Persona Platform (Source Code)
+https://emotiona-a6695.firebaseapp.com/
 
 ## 📋 1. Executive Overview
 
