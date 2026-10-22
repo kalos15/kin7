@@ -239,8 +239,8 @@ gcloud run deploy virtualbot-agent ^
   --set-env-vars "DEEPGRAM_API_KEY=xxxxxxxxxxxxxxxx" ^
   --set-env-vars "ELEVEN_API_KEY=sk_xxxxxxxxxxxx" ^
   --set-env-vars "BEY_AVATAR_ID=xxxxxxxxxxxxxxx" ^
-  --set-env-vars "BEY_AVATAR_ID_MALE=1c7a7291-ee28-4800-8f34-acfbfc2d07c0" ^
-  --set-env-vars "BEYOND_API_KEY=sk-CI1b5cVJO9bt4lDVxEJLQM6MAAzCb3thsaBiMxIgxzo" ^
+  --set-env-vars "BEY_AVATAR_ID_MALE=1c7axxx" ^
+  --set-env-vars "BEYOND_API_KEY=sk-CI1b5cVxxx" ^
   --set-env-vars "chgpt=sk-proj-xbkFJBjj1Sxxxxxxx"
   
   
